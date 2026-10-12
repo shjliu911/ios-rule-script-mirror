@@ -1,0 +1,63 @@
+name: Mirror upstream rule/
+
+# 从 blackmatrix7/ios_rule_script 同步 rule/ 目录。
+# 上游约每 2 天重生成一次（北京时间清晨 05:20 前后），这里每天跑两次，
+# 保证最多滞后 12 小时。全部跑在 GitHub 服务器上，与本机无关。
+on:
+  schedule:
+    # 北京 06:37 / 18:37（= UTC 22:37 / 10:37），错开上游生成时刻
+    - cron: "37 22 * * *"
+    - cron: "37 10 * * *"
+  workflow_dispatch:          # 手动补跑
+  push:
+    branches: [main]
+    paths:                    # 只改了同步/校验脚本就试跑一次（rule/ 由本 workflow 自己提交，不触发）
+      - "sync-rules.sh"
+      - "verify-rules.sh"
+      - ".github/workflows/sync.yml"
+
+permissions:
+  contents: write             # 允许 bot 提交
+
+concurrency:
+  group: mirror-upstream-rules   # 避免定时与手动同时跑
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 同步上游 rule/
+        id: sync
+        env:
+          CI_STRICT: "1"
+        run: |
+          chmod +x sync-rules.sh verify-rules.sh
+          ./sync-rules.sh
+
+      - name: 校验镜像产物
+        run: ./verify-rules.sh
+
+      - name: 提交并推送
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A 'rule'
+          if git diff --cached --quiet; then
+            echo "无实质变化，跳过提交"
+            exit 0
+          fi
+          ADDED="${{ steps.sync.outputs.added }}"
+          CHANGED="${{ steps.sync.outputs.changed }}"
+          REMOVED="${{ steps.sync.outputs.removed }}"
+          SHA="${{ steps.sync.outputs.upstream_sha }}"
+          git commit -q -m "sync: 镜像上游 rule/ @${SHA} (+${ADDED} ~${CHANGED} -${REMOVED}) [skip ci]"
+          # 竞态兜底：checkout 期间若有人手动推，远端会领先 → rebase 后重试
+          for i in 1 2 3; do
+            if git push; then break; fi
+            echo "push 被拒，尝试 rebase 后重试 (#$i)…"
+            git pull --rebase --autostash origin main || { echo "::error::rebase 冲突，需人工处理"; exit 1; }
+          done

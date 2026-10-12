@@ -56,8 +56,14 @@ jobs:
           SHA="${{ steps.sync.outputs.upstream_sha }}"
           git commit -q -m "sync: 镜像上游 rule/ @${SHA} (+${ADDED} ~${CHANGED} -${REMOVED}) [skip ci]"
           # 竞态兜底：checkout 期间若有人手动推，远端会领先 → rebase 后重试
+          # 循环用尽仍失败必须显式 exit 1，否则步骤"静默成功"（绿色但没推上去）
+          ok=0
           for i in 1 2 3; do
-            if git push; then break; fi
+            if git push; then ok=1; break; fi
             echo "push 被拒，尝试 rebase 后重试 (#$i)…"
             git pull --rebase --autostash origin main || { echo "::error::rebase 冲突，需人工处理"; exit 1; }
           done
+          if [ "$ok" != 1 ]; then
+            echo "::error::push 重试 3 次仍失败，镜像未更新"
+            exit 1
+          fi

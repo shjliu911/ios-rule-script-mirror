@@ -73,6 +73,40 @@ def walk(root):
             out[os.path.relpath(fp, root)] = fp
     return out
 
+# ── 本地豁免：修上游误杀 ──────────────────────────────────
+# 上游广告清单里的整域封禁会连带打死正常站点。这些域名在写入镜像时从
+# Advertising 类文件里剔除；每次同步都重新应用，不会被上游覆盖回去。
+# 只作用于 rule/<client>/Advertising/ 下的文件，其他类别一律不动。
+EXEMPT_DOMAINS = (
+    # Cafe24 电商基础设施。cafe24.poxo.com 是韩国 Cafe24 店铺最主要的商品图
+    # CDN（一个商品页就引用 25 处），assets.poxo.com 是它的前端 jet.js。
+    # AdGuard 的 ||poxo.com^ 会把所有 Cafe24 店铺的图片一并掐掉。
+    'poxo.com',
+)
+# 一行里出现该域名（或它的子域）的整域规则才算命中：DOMAIN-SUFFIX,x /
+# HOST-SUFFIX,x / DOMAIN,x / .x / +.x / ||x^ 都能覆盖。前后不能紧挨域名
+# 字符或点，所以 mypoxo.com、poxo.com.evil.com 这类不会被误伤。
+EXEMPT_LINE = re.compile(
+    rb'(?<![a-z0-9-])(?:[a-z0-9-]+\.)*(?:'
+    + b'|'.join(re.escape(d.encode()) for d in EXEMPT_DOMAINS)
+    + rb')(?![a-z0-9.-])'
+)
+
+def strip_exempt(rel, raw):
+    """剔除 Advertising 类文件里被误杀的整域规则；其他文件原样返回。"""
+    if '/Advertising/' not in rel.replace(os.sep, '/'):
+        return raw
+    if not any(d.encode() in raw for d in EXEMPT_DOMAINS):
+        return raw
+    kept, removed = [], 0
+    for line in raw.splitlines(keepends=True):
+        body = line.strip()
+        if body and not body.startswith((b'#', b'!', b';')) and EXEMPT_LINE.search(body):
+            removed += 1
+            continue
+        kept.append(line)
+    return b''.join(kept) if removed else raw
+
 s, d = walk(src), walk(dst)
 added = changed = 0
 skipped = 0
@@ -80,18 +114,22 @@ skipped = 0
 for rel, sp in s.items():
     dp = os.path.join(dst, rel)
     raw = open(sp, 'rb').read()
+    # 比对和写入都用「应用豁免后」的内容：否则带豁免的 Advertising 文件
+    # 每次同步都会被判为"有变化"，白写一遍。
+    out = strip_exempt(rel, raw)
     if rel in d:
         # 已有文件：比"掩码后内容"，相同就原样保留（含旧时间戳），
         # 这样 git diff 只显示真正变了的文件，仓库不会虚胖。
         old = open(dp, 'rb').read()
-        if norm_bytes(old) == norm_bytes(raw):
+        if norm_bytes(old) == norm_bytes(out):
             skipped += 1
             continue
         changed += 1
     else:
         added += 1
     os.makedirs(os.path.dirname(dp), exist_ok=True)
-    shutil.copyfile(sp, dp)          # 写入上游原始内容（保留真实时间戳）
+    with open(dp, 'wb') as f:
+        f.write(out)                     # 上游内容（保留真实时间戳）+ 本地豁免
 
 # 上游删掉的文件，镜像里也删掉
 removed = 0

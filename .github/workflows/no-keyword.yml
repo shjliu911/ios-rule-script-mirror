@@ -1,0 +1,67 @@
+name: Generate No-Keyword Ruleset
+
+# 定期（每 7 天）对镜像的规则集执行「去 KEYWORD 化」并增量更新至 rule-no-keyword/ 目录。
+# 专供 Surge、Loon、Clash 等客户端享受 Trie 树高速匹配、零误杀的纯净规则分流。
+on:
+  schedule:
+    # 每周日北京时间 11:37（= UTC 03:37），每 7 天执行一次
+    - cron: "37 3 * * 0"
+  workflow_dispatch:          # 支持手动在 GitHub 页面触发
+  push:
+    branches: [main]
+    paths:
+      - "build-no-keyword.sh"
+      - "verify-no-keyword.sh"
+      - ".github/workflows/no-keyword.yml"
+
+permissions:
+  contents: write             # 允许 bot 提交增量
+
+concurrency:
+  group: generate-no-keyword-ruleset
+  cancel-in-progress: false
+
+jobs:
+  build-no-keyword:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: 生成无 KEYWORD 规则集
+        id: build
+        env:
+          CI_STRICT: "1"
+        run: |
+          chmod +x build-no-keyword.sh verify-no-keyword.sh
+          ./build-no-keyword.sh
+
+      - name: 校验去 KEYWORD 产物
+        run: ./verify-no-keyword.sh
+
+      - name: 提交并推送增量更新
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A 'rule-no-keyword'
+          if git diff --cached --quiet; then
+            echo "无实质变化，跳过提交"
+            exit 0
+          fi
+          ADDED="${{ steps.build.outputs.added }}"
+          CHANGED="${{ steps.build.outputs.changed }}"
+          REMOVED="${{ steps.build.outputs.removed }}"
+          KW_REMOVED="${{ steps.build.outputs.kw_removed }}"
+          git commit -q -m "sync: 增量更新 rule-no-keyword/ (+${ADDED} ~${CHANGED} -${REMOVED}, 剥离 ${KW_REMOVED} 条关键词) [skip ci]"
+          
+          # 竞态重试推送
+          ok=0
+          for i in 1 2 3; do
+            if git push; then ok=1; break; fi
+            echo "push 被拒，尝试 rebase 后重试 (#$i)…"
+            git pull --rebase --autostash origin main || { echo "::error::rebase 冲突，需人工处理"; exit 1; }
+          done
+          if [ "$ok" != 1 ]; then
+            echo "::error::push 重试 3 次仍失败"
+            exit 1
+          fi

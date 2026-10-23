@@ -1,13 +1,13 @@
 # NAME: Global
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2026-10-12 05:21:46
+# UPDATED: 2026-10-20 05:59:20
 # DOMAIN: 127
-# DOMAIN-SUFFIX: 34900
+# DOMAIN-SUFFIX: 34923
 # IP-CIDR: 115
 # IP-CIDR6: 4
 # PROCESS-NAME: 1
-# TOTAL: 35183
+# TOTAL: 35206
 1password.drift.click
 adobeereg.com
 agb9r0ad.qllfkl.com
@@ -642,6 +642,7 @@ login.microsoftonline.com
 +.91sesex.xyz
 +.91sew.xyz
 +.91sew40.buzz
++.91short.com
 +.91vhome.com
 +.920share.com
 +.921bb.com
@@ -2515,7 +2516,6 @@ login.microsoftonline.com
 +.asminternational.org
 +.asmrbuluo.com
 +.asn-online.org
-+.asobostudio.com
 +.asp-cc.com
 +.asp.net
 +.aspbjournals.org
@@ -3539,8 +3539,15 @@ login.microsoftonline.com
 +.beforeigners.com
 +.befuck.com
 +.befuck.net
++.beget.app
++.beget.cloud
 +.beget.com
++.beget.de
++.beget.hosting
++.beget.pro
 +.beget.ru
++.beget.tech
++.begetcdn.cloud
 +.begin-trade.com
 +.behaviour4learning.ac.uk
 +.behavioural-science.ac.uk
@@ -3588,6 +3595,7 @@ login.microsoftonline.com
 +.beru.ru
 +.besa.ac.uk
 +.besc.ac.uk
++.beserver.ru
 +.beside.ac.uk
 +.bess.ac.uk
 +.best-sex-games.com
@@ -3700,6 +3708,7 @@ login.microsoftonline.com
 +.bfmat.ac.uk
 +.bftv.ac.uk
 +.bgc.ac.uk
++.bget.ru
 +.bgicdn.com
 +.bgov.com
 +.bgr.in
@@ -4882,6 +4891,7 @@ login.microsoftonline.com
 +.bsappapi.com
 +.bsaw.ac.uk
 +.bsbec.ac.uk
++.bscdnweb.com
 +.bsdc.ac.uk
 +.bsersd.xyz
 +.bsfc.ac.uk
@@ -6701,6 +6711,7 @@ login.microsoftonline.com
 +.cursor.com
 +.cursor.sh
 +.cursorapi.com
++.cursorvm.com
 +.curve.fi
 +.curvybbwwives.com
 +.curvyerotic.com
@@ -9777,7 +9788,6 @@ login.microsoftonline.com
 +.fli8.xyz
 +.flic.kr
 +.flickr.net
-+.flightsimulator.com
 +.flipfap.com
 +.flipnotestudio.com
 +.flipshare.com
@@ -16129,8 +16139,6 @@ login.microsoftonline.com
 +.messybrainz.org
 +.messytube.com
 +.met-nude.com
-+.meta.ai
-+.metaaivm.com
 +.metabolomics.ac.uk
 +.metabora.io
 +.metabrainz.org
@@ -18868,6 +18876,7 @@ login.microsoftonline.com
 +.opac-project.eu
 +.opdems.ac.uk
 +.open.ac.uk
++.openai.org
 +.openamt.com
 +.openapiplatform.com
 +.openapiservice.com
@@ -20503,6 +20512,7 @@ login.microsoftonline.com
 +.pussyshine.info
 +.pussyspace.net
 +.putinho.net
++.pv-cdn.net
 +.pvp.net
 +.pvp.tv
 +.pvt.sexy
@@ -21741,6 +21751,7 @@ login.microsoftonline.com
 +.sccjr.ac.uk
 +.scct.ac.uk
 +.scde.ac.uk
++.scea.com
 +.scene7.com
 +.scenesource.me
 +.scentro.ac.uk
@@ -21757,6 +21768,7 @@ login.microsoftonline.com
 +.school-economic-science.ac.uk
 +.schwab.com.sg
 +.schwabassetmanagement.com
++.schwabcdn.com
 +.schwabplan.com
 +.sci-hub.it.nf
 +.sci-hub.mksa.top
@@ -22827,6 +22839,7 @@ login.microsoftonline.com
 +.sony.com.pa
 +.sony.com.pe
 +.sony.com.ph
++.sony.com.py
 +.sony.com.sg
 +.sony.com.sv
 +.sony.com.tr
@@ -22869,8 +22882,10 @@ login.microsoftonline.com
 +.sonydesign.com
 +.sonydna.com
 +.sonyglobalsolutions.jp
++.sonyinteractive.com
 +.sonykigyo.jp
 +.sonylatvija.com
++.sonymusic.com.hk
 +.sonynetwork.co.jp
 +.sonypcl.jp
 +.sonypictures.com
@@ -23055,6 +23070,7 @@ login.microsoftonline.com
 +.springernature.com
 +.sprinklesapp.com
 +.sprint.ac.uk
++.sprut.io
 +.spsrn.ac.uk
 +.sptvbroadcast.com
 +.spurgeons.ac.uk
@@ -24321,6 +24337,8 @@ login.microsoftonline.com
 +.timestalks.com
 +.timeweb.cloud
 +.timeweb.com
++.timeweb.tech
++.timewebcloud.kz
 +.timi1.me
 +.timo0.com
 +.ting53.xyz
@@ -24838,6 +24856,7 @@ login.microsoftonline.com
 +.typeisbeautiful.com
 +.typekit.com
 +.typenetwork.com
++.typesafe.ai
 +.typesquare.com
 +.tyre-cadcam.com
 +.tyrecadcam.com
@@ -27118,6 +27137,7 @@ login.microsoftonline.com
 +.xn--90ab.com
 +.xn--90ab2c.xn--p1ai
 +.xn--90absjljw3g.xn--p1ai
++.xn--90aefb9d.xn--p1ai
 +.xn--90aifd0az.shop
 +.xn--90aifd0azb.xn--p1acf
 +.xn--9kr7l.com
@@ -28410,6 +28430,7 @@ login.microsoftonline.com
 +.7capture.com
 +.7cow.com
 +.7mmtv.tv
++.7x24hrs.com
 +.8-d.com
 +.85cc.net
 +.85cc.us
@@ -31845,7 +31866,9 @@ login.microsoftonline.com
 +.meshrep.com
 +.mesotw.com
 +.messenger.com
++.meta.ai
 +.meta.com
++.metaaivm.com
 +.metacafe.com
 +.metacubex.one
 +.metafilter.com

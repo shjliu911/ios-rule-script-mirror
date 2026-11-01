@@ -1,14 +1,14 @@
 # NAME: Apple
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2026-10-04 04:27:39
+# UPDATED: 2026-10-26 04:15:00
 # DOMAIN: 9
-# DOMAIN-SUFFIX: 1551
+# DOMAIN-SUFFIX: 1550
 # IP-CIDR: 10
 # IP-CIDR6: 3
 # PROCESS-NAME: 13
 # USER-AGENT: 23
-# TOTAL: 1609
+# TOTAL: 1608
 IP-CIDR,139.178.128.0/18,no-resolve
 IP-CIDR,144.178.0.0/19,no-resolve
 IP-CIDR,144.178.36.0/22,no-resolve
@@ -41,9 +41,9 @@ USER-AGENT,locationd*
 USER-AGENT,passd*
 USER-AGENT,Music*
 USER-AGENT,AppleNews*
+USER-AGENT,AppleTV*
 USER-AGENT,com.apple.news*
 USER-AGENT,com.apple.trustd*
-USER-AGENT,AppleTV*
 USER-AGENT,com.apple.tv*
 PROCESS-NAME,CoreLocationAgent
 PROCESS-NAME,WeatherWidget

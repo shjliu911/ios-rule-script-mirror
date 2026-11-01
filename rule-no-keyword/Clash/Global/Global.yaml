@@ -1,13 +1,13 @@
 # NAME: Global
 # AUTHOR: blackmatrix7
 # REPO: https://github.com/blackmatrix7/ios_rule_script
-# UPDATED: 2026-10-24 04:57:00
-# DOMAIN: 127
-# DOMAIN-SUFFIX: 34974
+# UPDATED: 2026-10-28 05:42:04
+# DOMAIN: 129
+# DOMAIN-SUFFIX: 34993
 # IP-CIDR: 115
 # IP-CIDR6: 4
 # PROCESS-NAME: 1
-# TOTAL: 35221
+# TOTAL: 35242
 payload:
   - IP-CIDR,1.201.0.0/24
   - IP-CIDR,101.32.118.0/23

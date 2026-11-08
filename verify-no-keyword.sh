@@ -82,4 +82,72 @@ for c in Advertising Apple Google Netflix YouTube Bahamut GlobalMedia Spotify \
 done
 if [ -n "$miss" ]; then echo "✗ 缺少类别：$miss"; fail=1; else echo "  ✓ 全部齐全"; fi
 
+# ── 6) 断言：广告表误杀豁免不得回流 ──────────────────────
+# 这些是微软 / LinkedIn 的功能端点（非广告），build-no-keyword.sh 的
+# EXCLUDE_DOMAINS 会从 Advertising* 规则里剔除；此断言防止上游把它们带回来。
+echo "── 误杀豁免域名审查 ──"
+EX_LEAKS=$(python3 - "$R" <<'PY'
+import sys, os, re
+
+ROOT = sys.argv[1]
+EX = ['presence.teams.live.com', 'nexus.officeapps.live.com',
+      'nexusrules.officeapps.live.com', 'crl.microsoft.com',
+      'glbdns.microsoft.com', 'c.microsoft.com', 'platform.linkedin.com']
+
+def norm(d):
+    d = d.strip().strip("'").strip('"').lower()
+    if d.startswith('+.'): d = d[2:]
+    elif d.startswith('.'): d = d[1:]
+    return d.rstrip('.')
+
+def dom(line):
+    s = line.strip()
+    if not s or s.startswith(('#', '!')): return None
+    if s.startswith('- '):
+        s = s[2:].strip().strip("'").strip('"')
+        if ',' in s:
+            t, r = s.split(',', 1)
+            return norm(r.split(',')[0]) if t.strip().upper() in ('DOMAIN','DOMAIN-SUFFIX','HOST','HOST-SUFFIX') else None
+        return norm(s) if s else None
+    if s.startswith('||'):
+        m = re.match(r'^\|\|([^/^$]+)', s)
+        return norm(m.group(1)) if m else None
+    if ',' in s:
+        p = s.split(',')
+        if p[0].strip().upper() in ('DOMAIN','DOMAIN-SUFFIX','HOST','HOST-SUFFIX'):
+            return norm(p[1])
+    return None
+
+leaks = []
+for dp, dns, fns in os.walk(ROOT):
+    if '/Advertising' not in dp.replace(os.sep, '/'):
+        continue
+    for fn in fns:
+        if not fn.endswith(('.list', '.yaml', '.yml', '.txt', '.conf', '.snippet')):
+            continue
+        fp = os.path.join(dp, fn)
+        with open(fp, 'r', encoding='utf-8', errors='ignore') as f:
+            for idx, line in enumerate(f, 1):
+                d = dom(line)
+                if d and any(d == ex or d.endswith('.' + ex) for ex in EX):
+                    leaks.append(f"{fp}:{idx}: {line.strip()}")
+                    if len(leaks) >= 10:
+                        break
+    if len(leaks) >= 10:
+        break
+
+if leaks:
+    print('\n'.join(leaks))
+    sys.exit(1)
+sys.exit(0)
+PY
+)
+if [ $? -eq 0 ]; then
+  echo "  ✓ 广告表误杀豁免已生效（微软 / LinkedIn 功能端点）"
+else
+  echo "  ✗ 误杀豁免域名回流到广告表："
+  echo "$EX_LEAKS"
+  fail=1
+fi
+
 exit $fail

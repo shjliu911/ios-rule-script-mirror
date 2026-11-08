@@ -22,6 +22,17 @@ SRC="rule"
 DST="rule-no-keyword"
 COMMIT=0
 
+# 上游广告表里的**误杀项**：这些是微软 / LinkedIn 的功能端点，不是广告。
+# 只从 rule-no-keyword/ 剔除，rule/ 仍保持上游原样镜像；
+# 客户端模板（proxy-configs）另有本地豁免，双保险。
+#   presence.teams.live.com        Teams 在线状态
+#   nexus(.rules).officeapps.live.com  Office 配置/实验下发
+#   crl.microsoft.com              证书吊销列表
+#   glbdns.microsoft.com           微软服务发现
+#   c.microsoft.com                微软下载/跳转 CDN
+#   platform.linkedin.com          LinkedIn 分享按钮 / 登录嵌入
+EXCLUDE_DOMAINS="presence.teams.live.com,nexus.officeapps.live.com,nexusrules.officeapps.live.com,crl.microsoft.com,glbdns.microsoft.com,c.microsoft.com,platform.linkedin.com"
+
 for a in "$@"; do case "$a" in
   --commit) COMMIT=1;;
   --no-push) :;;
@@ -35,27 +46,69 @@ die() { printf '\033[31m✗ %s\033[0m\n' "$*" >&2; exit 2; }
 
 say "开始从 $SRC 生成去 KEYWORD 规则集到 $DST/..."
 
-STATS=$(python3 - "$SRC" "$DST" <<'PY'
+STATS=$(python3 - "$SRC" "$DST" "$EXCLUDE_DOMAINS" <<'PY'
 import sys, os, re, shutil
 
 src, dst = sys.argv[1], sys.argv[2]
+EXCLUDE = [x.strip().lower() for x in sys.argv[3].split(',') if x.strip()]
 TS = re.compile(rb'\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}')
 
 def norm_bytes(raw: bytes) -> bytes:
     return TS.sub(b'<TS>', raw)
 
-def process_file_content(raw: bytes, ext: str) -> tuple[bytes, int]:
+def norm_dom(d: str) -> str:
+    d = d.strip().strip("'").strip('"').lower()
+    if d.startswith('+.'):
+        d = d[2:]
+    elif d.startswith('.'):
+        d = d[1:]
+    return d.rstrip('.')
+
+def rule_domain(line: str):
+    """取出规则行的域名值（Surge / Loon / Clash / QX / AdGuard 五种形态）。"""
+    s = line.strip()
+    if not s or s.startswith(('#', '!')):
+        return None
+    if s.startswith('- '):
+        s = s[2:].strip().strip("'").strip('"')
+        if ',' in s:
+            typ, rest = s.split(',', 1)
+            if typ.strip().upper() in ('DOMAIN', 'DOMAIN-SUFFIX', 'HOST', 'HOST-SUFFIX'):
+                return norm_dom(rest.split(',')[0])
+            return None
+        return norm_dom(s) if s else None
+    if s.startswith('||'):
+        m = re.match(r'^\|\|([^/^$]+)', s)
+        return norm_dom(m.group(1)) if m else None
+    if ',' in s:
+        p = s.split(',')
+        if p[0].strip().upper() in ('DOMAIN', 'DOMAIN-SUFFIX', 'HOST', 'HOST-SUFFIX'):
+            return norm_dom(p[1])
+    return None
+
+def is_excluded(domain: str) -> bool:
+    if not domain:
+        return False
+    return any(domain == ex or domain.endswith('.' + ex) for ex in EXCLUDE)
+
+def process_file_content(raw: bytes, ext: str, rel: str) -> tuple[bytes, int, int]:
     try:
         content = raw.decode('utf-8')
     except UnicodeDecodeError:
-        return raw, 0
+        return raw, 0, 0
 
-    if 'KEYWORD' not in content:
-        return raw, 0
+    # 误杀豁免只作用于广告类规则（Advertising / AdvertisingLite / AdvertisingTest / MiTV），
+    # 避免误删 Microsoft.list 等其它类别里的同名条目。
+    apply_ex = '/Advertising' in rel
+
+    # 快路径：既无 KEYWORD、也不含任何待剔除域名 → 原样返回（避免无谓改写）。
+    if 'KEYWORD' not in content and not (apply_ex and any(ex in content for ex in EXCLUDE)):
+        return raw, 0, 0
 
     lines = content.splitlines()
     new_lines = []
     removed_kw = 0
+    removed_ex = 0
     total_idx = -1
     total_val = None
 
@@ -70,16 +123,20 @@ def process_file_content(raw: bytes, ext: str) -> tuple[bytes, int]:
             total_val = int(m_tot.group(1))
             new_lines.append(line)
             continue
-        
+
         # 规则行过滤：Surge/Loon/Shadowrocket/Clash/QuantumultX
         stripped = line.strip()
         if stripped.startswith(('DOMAIN-KEYWORD,', 'HOST-KEYWORD,', '- DOMAIN-KEYWORD,')):
             removed_kw += 1
             continue
+        # 误杀豁免：按域名值剔除（支持 DOMAIN / DOMAIN-SUFFIX / HOST / '+.' / '||...^'）
+        if apply_ex and is_excluded(rule_domain(line)):
+            removed_ex += 1
+            continue
         new_lines.append(line)
 
-    if total_idx != -1 and total_val is not None:
-        new_total = max(0, total_val - removed_kw)
+    if total_idx != -1 and total_val is not None and (removed_kw or removed_ex):
+        new_total = max(0, total_val - removed_kw - removed_ex)
         new_lines[total_idx] = f'# TOTAL: {new_total}'
 
     # Clash YAML 边界：如果 payload 规则被全部剔空，转为合法空列表 payload: []
@@ -94,7 +151,7 @@ def process_file_content(raw: bytes, ext: str) -> tuple[bytes, int]:
     res = '\n'.join(new_lines)
     if content.endswith('\n'):
         res += '\n'
-    return res.encode('utf-8'), removed_kw
+    return res.encode('utf-8'), removed_kw, removed_ex
 
 def walk(root):
     out = {}
@@ -111,6 +168,8 @@ s, d = walk(src), walk(dst)
 added = changed = skipped = removed = 0
 kw_rules_removed_total = 0
 kw_files_affected = 0
+ex_rules_removed_total = 0
+ex_files_affected = 0
 
 rule_exts = {'.list', '.yaml', '.yml', '.txt', '.conf', '.snippet'}
 
@@ -120,10 +179,13 @@ for rel, sp in s.items():
     ext = os.path.splitext(rel)[1].lower()
 
     if ext in rule_exts:
-        processed, kw_cnt = process_file_content(raw, ext)
+        processed, kw_cnt, ex_cnt = process_file_content(raw, ext, rel)
         if kw_cnt > 0:
             kw_rules_removed_total += kw_cnt
             kw_files_affected += 1
+        if ex_cnt > 0:
+            ex_rules_removed_total += ex_cnt
+            ex_files_affected += 1
     else:
         processed = raw
 
@@ -151,21 +213,22 @@ for dp, dns, fns in os.walk(dst, topdown=False):
     if not os.listdir(dp):
         os.rmdir(dp)
 
-print(f'{added} {changed} {skipped} {removed} {len(s)} {kw_rules_removed_total} {kw_files_affected}')
+print(f'{added} {changed} {skipped} {removed} {len(s)} {kw_rules_removed_total} {kw_files_affected} {ex_rules_removed_total} {ex_files_affected}')
 PY
 ) || die "生成失败"
 
-read -r ADDED CHANGED SKIPPED REMOVED TOTAL KW_REMOVED KW_FILES <<< "$STATS"
+read -r ADDED CHANGED SKIPPED REMOVED TOTAL KW_REMOVED KW_FILES EX_REMOVED EX_FILES <<< "$STATS"
 say "处理完成：共 $TOTAL 个文件"
 say "  新增: $ADDED | 内容更新: $CHANGED | 未变跳过: $SKIPPED | 删除: $REMOVED"
 say "  共在 $KW_FILES 个文件中剥离了 $KW_REMOVED 条 KEYWORD 规则"
+say "  共在 $EX_FILES 个文件中剔除了 $EX_REMOVED 条误杀豁免域名"
 
 # ── 可选：提交 + 推送 ─────────────────────────────────────
 if [ "$COMMIT" = 1 ]; then
   if [ -z "$(git status --porcelain "$DST")" ]; then
     say "无实质变化，不提交"
   else
-    SUMMARY="+$ADDED ~$CHANGED -$REMOVED (剥离 $KW_REMOVED 条 KEYWORD)"
+    SUMMARY="+$ADDED ~$CHANGED -$REMOVED (剥离 $KW_REMOVED 条 KEYWORD，剔除 $EX_REMOVED 条误杀域)"
     say "提交（${SUMMARY}）"
     git add -A "$DST"
     git commit -q -m "sync: 增量更新 $DST/ ($SUMMARY)"
@@ -187,3 +250,5 @@ echo "skipped=$SKIPPED"             >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null
 echo "removed=$REMOVED"             >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null || true
 echo "kw_removed=$KW_REMOVED"       >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null || true
 echo "kw_files=$KW_FILES"           >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null || true
+echo "ex_removed=$EX_REMOVED"       >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null || true
+echo "ex_files=$EX_FILES"           >> "${GITHUB_OUTPUT:-/dev/null}" 2>/dev/null || true

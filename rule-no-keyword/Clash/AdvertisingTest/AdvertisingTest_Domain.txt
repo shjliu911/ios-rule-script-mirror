@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 301899
 # IP-CIDR: 508
 # IP-CIDR6: 3
-# TOTAL: 315848
+# TOTAL: 315841
 103.179.189.35
 103.224.182.210
 107.148.45.21
@@ -32250,7 +32250,6 @@ webcast-open.douyin.com
 .c.messinahembry.com
 .c.mfstatic.cz
 .c.mibank.com
-.c.microsoft.com
 .c.mktg.genesys.com
 .c.mnjkw.cn
 .c.msn.com
@@ -266863,7 +266862,6 @@ webcast-open.douyin.com
 .creativetv.pro
 .crimentasaju.site
 .criminglynuk.pro
-.crl.microsoft.com
 .crm-eve.b2b.alibaba-inc.com
 .crocopop.com
 .crosschannel.com
@@ -268354,7 +268352,6 @@ webcast-open.douyin.com
 .gladiatorbugs.com
 .glasgowtimes-gb.glasgowtimes.co.uk
 .glasszz.com
-.glbdns.microsoft.com
 .gleergie.net
 .glispa.com
 .global-surveys.co
@@ -293063,9 +293060,7 @@ webcast-open.douyin.com
 .nexolen.net
 .next-done.website
 .nextyourcontent.com
-.nexus.officeapps.live.com
 .nexusedgeio.com
-.nexusrules.officeapps.live.com
 .nexx360-static.io
 .nexyzh.com
 .nfdomuxlrdypk.site
@@ -295306,7 +295301,6 @@ webcast-open.douyin.com
 .platesnervous.com
 .platform.adwep.com
 .platform.foursquare.com
-.platform.linkedin.com
 .platform.loyaltylion.com
 .platform.tumblr.com
 .platformallowingcame.com
@@ -295646,7 +295640,6 @@ webcast-open.douyin.com
 .preppiesteamer.com
 .prepstarcenter.com
 .prerogativeproblems.com
-.presence.teams.live.com
 .presentimentguestmetaphor.com
 .presentunique.pro
 .preservealso.com

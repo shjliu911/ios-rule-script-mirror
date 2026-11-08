@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 273956
 # IP-CIDR: 486
 # IP-CIDR6: 3
-# TOTAL: 291159
+# TOTAL: 291152
 0.code.cotsta.ru
 03.lzzncm.com
 04.lzzncm.com
@@ -2015,7 +2015,6 @@ prebid-a.rubiconproject.net.akadns.net
 prebid-server-perf.rubiconproject.net.akadns.net
 prebid-server.rubiconproject.net.akadns.net
 preferences.truste.com
-presence.teams.live.com
 prod-ash-beacon-1960876484.us-east-1.elb.amazonaws.com
 prod-collecticon.outlookmobile.com
 prod-dcs-eventlog.decagames.com
@@ -10923,8 +10922,6 @@ newtab-media.com
 newwiesdom.com.cn
 nextdoor.com
 nextlandingads.com
-nexus.officeapps.live.com
-nexusrules.officeapps.live.com
 nezbumpwtdexd.com
 nfbpdwso.com
 nfkxplkiid.com
@@ -11808,7 +11805,6 @@ pl.cp12.wasu.tv
 pl.cp31.ott.cibntv.net
 platform.communicatorcorp.com
 platform.foursquare.com
-platform.linkedin.com
 platform.loyaltylion.com
 platform.tumblr.com
 play4k.co
@@ -45617,7 +45613,6 @@ play.kakao.com
 .c.medone.academy
 .c.messinahembry.com
 .c.mfstatic.cz
-.c.microsoft.com
 .c.mktg.genesys.com
 .c.my.msn.com
 .c.myluca.de
@@ -250355,7 +250350,6 @@ play.kakao.com
 .criminglynuk.pro
 .criteo.com
 .criteo.net
-.crl.microsoft.com
 .crm-eve.b2b.alibaba-inc.com
 .crocopop.com
 .crosschannel.com
@@ -252071,7 +252065,6 @@ play.kakao.com
 .gladiatorbugs.com
 .glasgowtimes-gb.glasgowtimes.co.uk
 .glasszz.com
-.glbdns.microsoft.com
 .gleergie.net
 .glispa.com
 .global-surveys.co

@@ -116,6 +116,9 @@ def dom(line):
         p = s.split(',')
         if p[0].strip().upper() in ('DOMAIN','DOMAIN-SUFFIX','HOST','HOST-SUFFIX'):
             return norm(p[1])
+    # 纯域名列表（Loon / Shadowrocket 的 *_Domain.list：每行一个域名，可能带前导点）
+    if ' ' not in s and '.' in s:
+        return norm(s)
     return None
 
 leaks = []

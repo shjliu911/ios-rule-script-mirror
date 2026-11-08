@@ -24,6 +24,19 @@ Surge、Loon 等现代代理客户端底层针对 `DOMAIN` 和 `DOMAIN-SUFFIX` �
 * 路径与 `rule/` **完全 1:1 对称**，只需将 URL 中的 `rule/` 换成 `rule-no-keyword/` 即可平滑无缝替换；
 * 同样采用 **时间戳掩码增量更新**，内容未变的文件在 git 历史中零冗余。
 
+### 广告表误杀豁免（`AdvertisingExempt/`）
+
+规则集本身无法携带「单条规则用哪个策略」（`RULE-SET` 的策略对整张表生效），所以误杀豁免
+单独成表，由客户端在广告表**之前**引用：
+
+| 表 | 内容 | 引用策略 |
+|---|---|---|
+| `*/AdvertisingExempt/AdvertisingExempt-Microsoft.*` | Teams presence、Office nexus、crl/glbdns/c.microsoft.com | 🪟 微软服务（DIRECT） |
+| `*/AdvertisingExempt/AdvertisingExempt-Global.*` | platform.linkedin.com | 🌍 全球代理 |
+
+这两张表由 `build-no-keyword.sh` 静态生成（不属于上游 `rule/`），是 `rule-no-keyword/`
+相对 `rule/` 的**唯一非 1:1 例外**；`verify-no-keyword.sh` 会断言它们齐全。
+
 ---
 
 ## 用法（以 Surge / Loon 为例）

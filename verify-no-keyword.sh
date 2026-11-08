@@ -123,7 +123,8 @@ def dom(line):
 
 leaks = []
 for dp, dns, fns in os.walk(ROOT):
-    if '/Advertising' not in dp.replace(os.sep, '/'):
+    # 只看广告表本身；AdvertisingExempt 是豁免表，本来就该包含这些域名
+    if not re.search(r'/Advertising(?:Lite|Test|MiTV)?/', dp.replace(os.sep, '/')):
         continue
     for fn in fns:
         if not fn.endswith(('.list', '.yaml', '.yml', '.txt', '.conf', '.snippet')):
@@ -151,6 +152,31 @@ else
   echo "  ✗ 误杀豁免域名回流到广告表："
   echo "$EX_LEAKS"
   fail=1
+fi
+
+# ── 7) 断言：静态豁免表存在且内容完整 ────────────────────
+# 规则集无法携带单条策略，所以误杀豁免做成独立小表，由客户端在广告表之前引用。
+echo "── 静态豁免表审查 ──"
+EX_MISS=""
+for f in \
+  "$R/Surge/AdvertisingExempt/AdvertisingExempt-Microsoft.list" \
+  "$R/Clash/AdvertisingExempt/AdvertisingExempt-Microsoft.yaml" \
+  "$R/QuantumultX/AdvertisingExempt/AdvertisingExempt-Microsoft.list" \
+  "$R/Surge/AdvertisingExempt/AdvertisingExempt-Global.list" \
+  "$R/Clash/AdvertisingExempt/AdvertisingExempt-Global.yaml" \
+  "$R/QuantumultX/AdvertisingExempt/AdvertisingExempt-Global.list"; do
+  [ -f "$f" ] || EX_MISS="$EX_MISS $f"
+done
+for d in presence.teams.live.com nexus.officeapps.live.com nexusrules.officeapps.live.com \
+         crl.microsoft.com glbdns.microsoft.com c.microsoft.com platform.linkedin.com; do
+  grep -q "$d" "$R/Surge/AdvertisingExempt/AdvertisingExempt-Microsoft.list" 2>/dev/null || \
+  grep -q "$d" "$R/Surge/AdvertisingExempt/AdvertisingExempt-Global.list" 2>/dev/null || \
+  EX_MISS="$EX_MISS $d"
+done
+if [ -n "$EX_MISS" ]; then
+  echo "  ✗ 静态豁免表缺失：$EX_MISS"; fail=1
+else
+  echo "  ✓ 静态豁免表齐全（Microsoft 6 + LinkedIn 1）"
 fi
 
 exit $fail

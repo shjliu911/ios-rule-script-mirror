@@ -101,8 +101,8 @@ def process_file_content(raw: bytes, ext: str, rel: str) -> tuple[bytes, int, in
         return raw, 0, 0
 
     # 误杀豁免只作用于广告类规则（Advertising / AdvertisingLite / AdvertisingTest / MiTV），
-    # 避免误删 Microsoft.list 等其它类别里的同名条目。
-    apply_ex = '/Advertising' in rel
+    # 避免误删 Microsoft.list 等其它类别里的同名条目；AdvertisingExempt 是豁免表本身，不处理。
+    apply_ex = bool(re.search(r'/Advertising(?:Lite|Test|MiTV)?/', rel))
 
     # 快路径：既无 KEYWORD、也不含任何待剔除域名 → 原样返回（避免无谓改写）。
     if 'KEYWORD' not in content and not (apply_ex and any(ex in content for ex in EXCLUDE)):
@@ -156,6 +156,48 @@ def process_file_content(raw: bytes, ext: str, rel: str) -> tuple[bytes, int, in
         res += '\n'
     return res.encode('utf-8'), removed_kw, removed_ex
 
+# ── 静态豁免表（不属于上游镜像，但随 rule-no-keyword 一起发布）──────────
+# 规则集本身不能携带「单条规则用哪个策略」——RULE-SET 的策略对整张表生效。
+# 所以误杀豁免必须做成**独立小表**，由客户端在广告表之前引用，才能指向
+# 「🪟 微软服务」/「🌍 全球代理」。这两张表就是给客户端引用的。
+MS_EXACT = ['presence.teams.live.com', 'nexus.officeapps.live.com', 'nexusrules.officeapps.live.com']
+MS_SUFFIX = ['crl.microsoft.com', 'glbdns.microsoft.com', 'c.microsoft.com']
+GL_EXACT = ['platform.linkedin.com']
+
+def build_static():
+    out = {}
+    surge_ms = ('# NAME: AdvertisingExempt-Microsoft\n'
+                '# NOTE: 广告表误杀豁免（微软功能端点）。必须在 Advertising 之前引用，策略=🪟 微软服务。\n'
+                + ''.join(f'DOMAIN,{d}\n' for d in MS_EXACT)
+                + ''.join(f'DOMAIN-SUFFIX,{d}\n' for d in MS_SUFFIX))
+    surge_gl = ('# NAME: AdvertisingExempt-Global\n'
+                '# NOTE: 广告表误杀豁免（LinkedIn）。必须在 Advertising 之前引用，策略=🌍 全球代理。\n'
+                + ''.join(f'DOMAIN,{d}\n' for d in GL_EXACT))
+    clash_ms = ('# NAME: AdvertisingExempt-Microsoft\npayload:\n'
+                + ''.join(f'  - DOMAIN,{d}\n' for d in MS_EXACT)
+                + ''.join(f'  - DOMAIN-SUFFIX,{d}\n' for d in MS_SUFFIX))
+    clash_gl = ('# NAME: AdvertisingExempt-Global\npayload:\n'
+                + ''.join(f'  - DOMAIN,{d}\n' for d in GL_EXACT))
+    qx_ms = ('# NAME: AdvertisingExempt-Microsoft\n'
+             + ''.join(f'host, {d}, direct\n' for d in MS_EXACT)
+             + ''.join(f'host-suffix, {d}, direct\n' for d in MS_SUFFIX))
+    qx_gl = ('# NAME: AdvertisingExempt-Global\n'
+             + ''.join(f'host, {d}, proxy\n' for d in GL_EXACT))
+    ag_ms = ('! NAME: AdvertisingExempt-Microsoft\n'
+             + ''.join(f'@@||{d}^\n' for d in MS_EXACT + MS_SUFFIX))
+    ag_gl = ('! NAME: AdvertisingExempt-Global\n'
+             + ''.join(f'@@||{d}^\n' for d in GL_EXACT))
+    for c in ('Surge', 'Loon', 'Shadowrocket'):
+        out[f'{c}/AdvertisingExempt/AdvertisingExempt-Microsoft.list'] = surge_ms
+        out[f'{c}/AdvertisingExempt/AdvertisingExempt-Global.list'] = surge_gl
+    out['Clash/AdvertisingExempt/AdvertisingExempt-Microsoft.yaml'] = clash_ms
+    out['Clash/AdvertisingExempt/AdvertisingExempt-Global.yaml'] = clash_gl
+    out['QuantumultX/AdvertisingExempt/AdvertisingExempt-Microsoft.list'] = qx_ms
+    out['QuantumultX/AdvertisingExempt/AdvertisingExempt-Global.list'] = qx_gl
+    out['AdGuard/AdvertisingExempt/AdvertisingExempt-Microsoft.txt'] = ag_ms
+    out['AdGuard/AdvertisingExempt/AdvertisingExempt-Global.txt'] = ag_gl
+    return out
+
 def walk(root):
     out = {}
     for dp, dns, fns in os.walk(root):
@@ -167,6 +209,7 @@ def walk(root):
             out[os.path.relpath(fp, root)] = fp
     return out
 
+STATIC = build_static()
 s, d = walk(src), walk(dst)
 added = changed = skipped = removed = 0
 kw_rules_removed_total = 0
@@ -205,9 +248,24 @@ for rel, sp in s.items():
     with open(dp, 'wb') as f:
         f.write(processed)
 
-# 目标目录中上游已删除的文件，同步删除
+# 写入静态豁免表（上游没有对应源文件，需在增量删除中豁免）
+for rel, text in STATIC.items():
+    dp = os.path.join(dst, rel)
+    data = text.encode('utf-8')
+    if rel in d:
+        if norm_bytes(open(dp, 'rb').read()) == norm_bytes(data):
+            skipped += 1
+            continue
+        changed += 1
+    else:
+        added += 1
+    os.makedirs(os.path.dirname(dp), exist_ok=True)
+    with open(dp, 'wb') as f:
+        f.write(data)
+
+# 目标目录中上游已删除的文件，同步删除（静态豁免表除外）
 for rel in d:
-    if rel not in s:
+    if rel not in s and rel not in STATIC:
         os.remove(os.path.join(dst, rel))
         removed += 1
 

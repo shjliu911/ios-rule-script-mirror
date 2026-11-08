@@ -1,0 +1,2 @@
+! NAME: AdvertisingExempt-Global
+@@||platform.linkedin.com^

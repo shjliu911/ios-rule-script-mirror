@@ -1,0 +1,7 @@
+# NAME: AdvertisingExempt-Microsoft
+host, presence.teams.live.com, direct
+host, nexus.officeapps.live.com, direct
+host, nexusrules.officeapps.live.com, direct
+host-suffix, crl.microsoft.com, direct
+host-suffix, glbdns.microsoft.com, direct
+host-suffix, c.microsoft.com, direct

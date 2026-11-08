@@ -1,0 +1,3 @@
+# NAME: AdvertisingExempt-Global
+# NOTE: 广告表误杀豁免（LinkedIn）。必须在 Advertising 之前引用，策略=🌍 全球代理。
+DOMAIN,platform.linkedin.com

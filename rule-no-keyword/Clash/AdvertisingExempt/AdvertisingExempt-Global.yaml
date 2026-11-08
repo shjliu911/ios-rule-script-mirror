@@ -1,0 +1,3 @@
+# NAME: AdvertisingExempt-Global
+payload:
+  - DOMAIN,platform.linkedin.com

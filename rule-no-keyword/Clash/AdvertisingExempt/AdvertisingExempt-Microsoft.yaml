@@ -1,0 +1,8 @@
+# NAME: AdvertisingExempt-Microsoft
+payload:
+  - DOMAIN,presence.teams.live.com
+  - DOMAIN,nexus.officeapps.live.com
+  - DOMAIN,nexusrules.officeapps.live.com
+  - DOMAIN-SUFFIX,crl.microsoft.com
+  - DOMAIN-SUFFIX,glbdns.microsoft.com
+  - DOMAIN-SUFFIX,c.microsoft.com

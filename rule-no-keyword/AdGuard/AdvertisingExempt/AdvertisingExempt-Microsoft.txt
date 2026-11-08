@@ -1,0 +1,7 @@
+! NAME: AdvertisingExempt-Microsoft
+@@||presence.teams.live.com^
+@@||nexus.officeapps.live.com^
+@@||nexusrules.officeapps.live.com^
+@@||crl.microsoft.com^
+@@||glbdns.microsoft.com^
+@@||c.microsoft.com^

@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 301899
 # IP-CIDR: 508
 # IP-CIDR6: 3
-# TOTAL: 315848
+# TOTAL: 315841
 payload:
   - '103.179.189.35'
   - '103.224.182.210'
@@ -32251,7 +32251,6 @@ payload:
   - '+.c.messinahembry.com'
   - '+.c.mfstatic.cz'
   - '+.c.mibank.com'
-  - '+.c.microsoft.com'
   - '+.c.mktg.genesys.com'
   - '+.c.mnjkw.cn'
   - '+.c.msn.com'
@@ -266864,7 +266863,6 @@ payload:
   - '+.creativetv.pro'
   - '+.crimentasaju.site'
   - '+.criminglynuk.pro'
-  - '+.crl.microsoft.com'
   - '+.crm-eve.b2b.alibaba-inc.com'
   - '+.crocopop.com'
   - '+.crosschannel.com'
@@ -268355,7 +268353,6 @@ payload:
   - '+.gladiatorbugs.com'
   - '+.glasgowtimes-gb.glasgowtimes.co.uk'
   - '+.glasszz.com'
-  - '+.glbdns.microsoft.com'
   - '+.gleergie.net'
   - '+.glispa.com'
   - '+.global-surveys.co'
@@ -293064,9 +293061,7 @@ payload:
   - '+.nexolen.net'
   - '+.next-done.website'
   - '+.nextyourcontent.com'
-  - '+.nexus.officeapps.live.com'
   - '+.nexusedgeio.com'
-  - '+.nexusrules.officeapps.live.com'
   - '+.nexx360-static.io'
   - '+.nexyzh.com'
   - '+.nfdomuxlrdypk.site'
@@ -295307,7 +295302,6 @@ payload:
   - '+.platesnervous.com'
   - '+.platform.adwep.com'
   - '+.platform.foursquare.com'
-  - '+.platform.linkedin.com'
   - '+.platform.loyaltylion.com'
   - '+.platform.tumblr.com'
   - '+.platformallowingcame.com'
@@ -295647,7 +295641,6 @@ payload:
   - '+.preppiesteamer.com'
   - '+.prepstarcenter.com'
   - '+.prerogativeproblems.com'
-  - '+.presence.teams.live.com'
   - '+.presentimentguestmetaphor.com'
   - '+.presentunique.pro'
   - '+.preservealso.com'

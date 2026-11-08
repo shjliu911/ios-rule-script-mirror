@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 273956
 # IP-CIDR: 486
 # IP-CIDR6: 3
-# TOTAL: 290881
+# TOTAL: 290874
 payload:
   - DOMAIN,0.code.cotsta.ru
   - DOMAIN,03.lzzncm.com
@@ -2016,7 +2016,6 @@ payload:
   - DOMAIN,prebid-server-perf.rubiconproject.net.akadns.net
   - DOMAIN,prebid-server.rubiconproject.net.akadns.net
   - DOMAIN,preferences.truste.com
-  - DOMAIN,presence.teams.live.com
   - DOMAIN,prod-ash-beacon-1960876484.us-east-1.elb.amazonaws.com
   - DOMAIN,prod-collecticon.outlookmobile.com
   - DOMAIN,prod-dcs-eventlog.decagames.com
@@ -10924,8 +10923,6 @@ payload:
   - DOMAIN,newwiesdom.com.cn
   - DOMAIN,nextdoor.com
   - DOMAIN,nextlandingads.com
-  - DOMAIN,nexus.officeapps.live.com
-  - DOMAIN,nexusrules.officeapps.live.com
   - DOMAIN,nezbumpwtdexd.com
   - DOMAIN,nfbpdwso.com
   - DOMAIN,nfkxplkiid.com
@@ -11809,7 +11806,6 @@ payload:
   - DOMAIN,pl.cp31.ott.cibntv.net
   - DOMAIN,platform.communicatorcorp.com
   - DOMAIN,platform.foursquare.com
-  - DOMAIN,platform.linkedin.com
   - DOMAIN,platform.loyaltylion.com
   - DOMAIN,platform.tumblr.com
   - DOMAIN,play4k.co
@@ -45618,7 +45614,6 @@ payload:
   - DOMAIN-SUFFIX,c.medone.academy
   - DOMAIN-SUFFIX,c.messinahembry.com
   - DOMAIN-SUFFIX,c.mfstatic.cz
-  - DOMAIN-SUFFIX,c.microsoft.com
   - DOMAIN-SUFFIX,c.mktg.genesys.com
   - DOMAIN-SUFFIX,c.my.msn.com
   - DOMAIN-SUFFIX,c.myluca.de
@@ -250356,7 +250351,6 @@ payload:
   - DOMAIN-SUFFIX,criminglynuk.pro
   - DOMAIN-SUFFIX,criteo.com
   - DOMAIN-SUFFIX,criteo.net
-  - DOMAIN-SUFFIX,crl.microsoft.com
   - DOMAIN-SUFFIX,crm-eve.b2b.alibaba-inc.com
   - DOMAIN-SUFFIX,crocopop.com
   - DOMAIN-SUFFIX,crosschannel.com
@@ -252072,7 +252066,6 @@ payload:
   - DOMAIN-SUFFIX,gladiatorbugs.com
   - DOMAIN-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk
   - DOMAIN-SUFFIX,glasszz.com
-  - DOMAIN-SUFFIX,glbdns.microsoft.com
   - DOMAIN-SUFFIX,gleergie.net
   - DOMAIN-SUFFIX,glispa.com
   - DOMAIN-SUFFIX,global-surveys.co

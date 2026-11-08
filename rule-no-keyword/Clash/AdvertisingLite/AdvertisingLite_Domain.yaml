@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 13939
 # IP-CIDR: 186
 # IP-CIDR6: 1
-# TOTAL: 38066
+# TOTAL: 38061
 payload:
   - '00-gov.cn'
   - '0024aadd.com'
@@ -13939,8 +13939,6 @@ payload:
   - 'nextmillennium.io'
   - 'nextoptim.com'
   - 'nextstat.com'
-  - 'nexus.officeapps.live.com'
-  - 'nexusrules.officeapps.live.com'
   - 'nezbumpwtdexd.com'
   - 'nfbpdwso.com'
   - 'nfdnserror1.wo.com.cn'
@@ -15431,7 +15429,6 @@ payload:
   - 'platform.communicatorcorp.com'
   - 'platform.foursquare.com'
   - 'platform.iteratehq.com'
-  - 'platform.linkedin.com'
   - 'platform.loyaltylion.com'
   - 'platform.tumblr.com'
   - 'platformpanda.com'
@@ -27643,7 +27640,6 @@ payload:
   - '+.criminglynuk.pro'
   - '+.criteo.com'
   - '+.criteo.net'
-  - '+.crl.microsoft.com'
   - '+.crm-eve.b2b.alibaba-inc.com'
   - '+.crocopop.com'
   - '+.crosschannel.com'
@@ -29440,7 +29436,6 @@ payload:
   - '+.gladiatorbugs.com'
   - '+.glasgowtimes-gb.glasgowtimes.co.uk'
   - '+.glasszz.com'
-  - '+.glbdns.microsoft.com'
   - '+.gleergie.net'
   - '+.glispa.com'
   - '+.global-surveys.co'

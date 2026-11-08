@@ -6,7 +6,7 @@
 # HOST-SUFFIX: 273956
 # IP-CIDR: 486
 # IP6-CIDR: 3
-# TOTAL: 290881
+# TOTAL: 290874
 HOST,0.code.cotsta.ru,Advertising
 HOST,03.lzzncm.com,Advertising
 HOST,04.lzzncm.com,Advertising
@@ -2015,7 +2015,6 @@ HOST,prebid-a.rubiconproject.net.akadns.net,Advertising
 HOST,prebid-server-perf.rubiconproject.net.akadns.net,Advertising
 HOST,prebid-server.rubiconproject.net.akadns.net,Advertising
 HOST,preferences.truste.com,Advertising
-HOST,presence.teams.live.com,Advertising
 HOST,prod-ash-beacon-1960876484.us-east-1.elb.amazonaws.com,Advertising
 HOST,prod-collecticon.outlookmobile.com,Advertising
 HOST,prod-dcs-eventlog.decagames.com,Advertising
@@ -10923,8 +10922,6 @@ HOST,newtab-media.com,Advertising
 HOST,newwiesdom.com.cn,Advertising
 HOST,nextdoor.com,Advertising
 HOST,nextlandingads.com,Advertising
-HOST,nexus.officeapps.live.com,Advertising
-HOST,nexusrules.officeapps.live.com,Advertising
 HOST,nezbumpwtdexd.com,Advertising
 HOST,nfbpdwso.com,Advertising
 HOST,nfkxplkiid.com,Advertising
@@ -11808,7 +11805,6 @@ HOST,pl.cp12.wasu.tv,Advertising
 HOST,pl.cp31.ott.cibntv.net,Advertising
 HOST,platform.communicatorcorp.com,Advertising
 HOST,platform.foursquare.com,Advertising
-HOST,platform.linkedin.com,Advertising
 HOST,platform.loyaltylion.com,Advertising
 HOST,platform.tumblr.com,Advertising
 HOST,play4k.co,Advertising
@@ -45617,7 +45613,6 @@ HOST-SUFFIX,c.media-dl.co,Advertising
 HOST-SUFFIX,c.medone.academy,Advertising
 HOST-SUFFIX,c.messinahembry.com,Advertising
 HOST-SUFFIX,c.mfstatic.cz,Advertising
-HOST-SUFFIX,c.microsoft.com,Advertising
 HOST-SUFFIX,c.mktg.genesys.com,Advertising
 HOST-SUFFIX,c.my.msn.com,Advertising
 HOST-SUFFIX,c.myluca.de,Advertising
@@ -250355,7 +250350,6 @@ HOST-SUFFIX,crimentasaju.site,Advertising
 HOST-SUFFIX,criminglynuk.pro,Advertising
 HOST-SUFFIX,criteo.com,Advertising
 HOST-SUFFIX,criteo.net,Advertising
-HOST-SUFFIX,crl.microsoft.com,Advertising
 HOST-SUFFIX,crm-eve.b2b.alibaba-inc.com,Advertising
 HOST-SUFFIX,crocopop.com,Advertising
 HOST-SUFFIX,crosschannel.com,Advertising
@@ -252071,7 +252065,6 @@ HOST-SUFFIX,gky73.cn,Advertising
 HOST-SUFFIX,gladiatorbugs.com,Advertising
 HOST-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk,Advertising
 HOST-SUFFIX,glasszz.com,Advertising
-HOST-SUFFIX,glbdns.microsoft.com,Advertising
 HOST-SUFFIX,gleergie.net,Advertising
 HOST-SUFFIX,glispa.com,Advertising
 HOST-SUFFIX,global-surveys.co,Advertising

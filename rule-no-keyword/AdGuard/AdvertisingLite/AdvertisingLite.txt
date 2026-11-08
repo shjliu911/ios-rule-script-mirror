@@ -9232,7 +9232,6 @@
 ||criteo.com^
 ||criteo.net^
 ||critictruck.com^
-||crl.microsoft.com^
 ||crm-eve.b2b.alibaba-inc.com^
 ||crm4d.com^
 ||crmmetrix.fr^
@@ -14353,7 +14352,6 @@
 ||glaumtok.com^
 ||glauptan.net^
 ||glawheejoushpush.com^
-||glbdns.microsoft.com^
 ||glbsuoebquueky.com^
 ||glbtracker.com^
 ||glbtrk.com^
@@ -22667,8 +22665,6 @@
 ||nextstat.com^
 ||nexttime.ovh^
 ||nexus.ensighten.com^
-||nexus.officeapps.live.com^
-||nexusrules.officeapps.live.com^
 ||nezbumpwtdexd.com^
 ||nfarmerlycompa.info^
 ||nfbpdwso.com^
@@ -24896,7 +24892,6 @@
 ||platform.communicatorcorp.com^
 ||platform.foursquare.com^
 ||platform.iteratehq.com^
-||platform.linkedin.com^
 ||platform.loyaltylion.com^
 ||platform.tumblr.com^
 ||platform.wondershare.com^

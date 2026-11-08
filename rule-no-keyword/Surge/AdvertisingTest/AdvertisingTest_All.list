@@ -9,7 +9,7 @@
 # IP-CIDR: 508
 # IP-CIDR6: 3
 # URL-REGEX: 14
-# TOTAL: 315583
+# TOTAL: 315576
 DOMAIN,103.179.189.35
 DOMAIN,103.224.182.210
 DOMAIN,107.148.45.21
@@ -32253,7 +32253,6 @@ DOMAIN-SUFFIX,c.medone.academy
 DOMAIN-SUFFIX,c.messinahembry.com
 DOMAIN-SUFFIX,c.mfstatic.cz
 DOMAIN-SUFFIX,c.mibank.com
-DOMAIN-SUFFIX,c.microsoft.com
 DOMAIN-SUFFIX,c.mktg.genesys.com
 DOMAIN-SUFFIX,c.mnjkw.cn
 DOMAIN-SUFFIX,c.msn.com
@@ -266866,7 +266865,6 @@ DOMAIN-SUFFIX,creatives1.ftimg.net
 DOMAIN-SUFFIX,creativetv.pro
 DOMAIN-SUFFIX,crimentasaju.site
 DOMAIN-SUFFIX,criminglynuk.pro
-DOMAIN-SUFFIX,crl.microsoft.com
 DOMAIN-SUFFIX,crm-eve.b2b.alibaba-inc.com
 DOMAIN-SUFFIX,crocopop.com
 DOMAIN-SUFFIX,crosschannel.com
@@ -268357,7 +268355,6 @@ DOMAIN-SUFFIX,gky73.cn
 DOMAIN-SUFFIX,gladiatorbugs.com
 DOMAIN-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk
 DOMAIN-SUFFIX,glasszz.com
-DOMAIN-SUFFIX,glbdns.microsoft.com
 DOMAIN-SUFFIX,gleergie.net
 DOMAIN-SUFFIX,glispa.com
 DOMAIN-SUFFIX,global-surveys.co
@@ -293066,9 +293063,7 @@ DOMAIN-SUFFIX,nexaapptwp.top
 DOMAIN-SUFFIX,nexolen.net
 DOMAIN-SUFFIX,next-done.website
 DOMAIN-SUFFIX,nextyourcontent.com
-DOMAIN-SUFFIX,nexus.officeapps.live.com
 DOMAIN-SUFFIX,nexusedgeio.com
-DOMAIN-SUFFIX,nexusrules.officeapps.live.com
 DOMAIN-SUFFIX,nexx360-static.io
 DOMAIN-SUFFIX,nexyzh.com
 DOMAIN-SUFFIX,nfdomuxlrdypk.site
@@ -295309,7 +295304,6 @@ DOMAIN-SUFFIX,platenssitient.com
 DOMAIN-SUFFIX,platesnervous.com
 DOMAIN-SUFFIX,platform.adwep.com
 DOMAIN-SUFFIX,platform.foursquare.com
-DOMAIN-SUFFIX,platform.linkedin.com
 DOMAIN-SUFFIX,platform.loyaltylion.com
 DOMAIN-SUFFIX,platform.tumblr.com
 DOMAIN-SUFFIX,platformallowingcame.com
@@ -295649,7 +295643,6 @@ DOMAIN-SUFFIX,prepositionrumour.com
 DOMAIN-SUFFIX,preppiesteamer.com
 DOMAIN-SUFFIX,prepstarcenter.com
 DOMAIN-SUFFIX,prerogativeproblems.com
-DOMAIN-SUFFIX,presence.teams.live.com
 DOMAIN-SUFFIX,presentimentguestmetaphor.com
 DOMAIN-SUFFIX,presentunique.pro
 DOMAIN-SUFFIX,preservealso.com

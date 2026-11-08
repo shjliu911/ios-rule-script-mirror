@@ -30093,7 +30093,6 @@
 ||c.medone.academy^
 ||c.messinahembry.com^
 ||c.mfstatic.cz^
-||c.microsoft.com^
 ||c.mktg.genesys.com^
 ||c.mse.360.cn^
 ||c.my.msn.com^
@@ -145463,7 +145462,6 @@
 ||prescription423.fun^
 ||prescription55.top^
 ||prescriptionadulatorylimelight.com^
-||presence.teams.live.com^
 ||presentationathletefoundation.com^
 ||presentationbishop.com^
 ||presentationplenty.com^
@@ -239770,7 +239768,6 @@
 ||criminglynuk.pro^
 ||criteo.com^
 ||criteo.net^
-||crl.microsoft.com^
 ||crm-eve.b2b.alibaba-inc.com^
 ||crocoads.com^
 ||crocopop.com^
@@ -243389,7 +243386,6 @@
 ||glaumtok.com^
 ||glauptan.net^
 ||glawheejoushpush.com^
-||glbdns.microsoft.com^
 ||glbsuoebquueky.com^
 ||gld35wndkn.com^
 ||gleaminist.info^
@@ -249483,8 +249479,6 @@
 ||nextlandingads.com^
 ||nextlnk9.com^
 ||nexttime.ovh^
-||nexus.officeapps.live.com^
-||nexusrules.officeapps.live.com^
 ||nezbumpwtdexd.com^
 ||nfarmerlycompa.info^
 ||nfbpdwso.com^
@@ -251066,7 +251060,6 @@
 ||platado.com^
 ||platform.communicatorcorp.com^
 ||platform.foursquare.com^
-||platform.linkedin.com^
 ||platform.loyaltylion.com^
 ||platform.tumblr.com^
 ||platform.wondershare.com^

@@ -6,7 +6,7 @@
 # HOST-SUFFIX: 13939
 # IP-CIDR: 186
 # IP6-CIDR: 1
-# TOTAL: 37879
+# TOTAL: 37874
 HOST,00-gov.cn,AdvertisingLite
 HOST,0024aadd.com,AdvertisingLite
 HOST,0026645142c89aeb1.com,AdvertisingLite
@@ -13938,8 +13938,6 @@ HOST,nextlandingads.com,AdvertisingLite
 HOST,nextmillennium.io,AdvertisingLite
 HOST,nextoptim.com,AdvertisingLite
 HOST,nextstat.com,AdvertisingLite
-HOST,nexus.officeapps.live.com,AdvertisingLite
-HOST,nexusrules.officeapps.live.com,AdvertisingLite
 HOST,nezbumpwtdexd.com,AdvertisingLite
 HOST,nfbpdwso.com,AdvertisingLite
 HOST,nfdnserror1.wo.com.cn,AdvertisingLite
@@ -15430,7 +15428,6 @@ HOST,plantdigestion.com,AdvertisingLite
 HOST,platform.communicatorcorp.com,AdvertisingLite
 HOST,platform.foursquare.com,AdvertisingLite
 HOST,platform.iteratehq.com,AdvertisingLite
-HOST,platform.linkedin.com,AdvertisingLite
 HOST,platform.loyaltylion.com,AdvertisingLite
 HOST,platform.tumblr.com,AdvertisingLite
 HOST,platformpanda.com,AdvertisingLite
@@ -27642,7 +27639,6 @@ HOST-SUFFIX,crimentasaju.site,AdvertisingLite
 HOST-SUFFIX,criminglynuk.pro,AdvertisingLite
 HOST-SUFFIX,criteo.com,AdvertisingLite
 HOST-SUFFIX,criteo.net,AdvertisingLite
-HOST-SUFFIX,crl.microsoft.com,AdvertisingLite
 HOST-SUFFIX,crm-eve.b2b.alibaba-inc.com,AdvertisingLite
 HOST-SUFFIX,crocopop.com,AdvertisingLite
 HOST-SUFFIX,crosschannel.com,AdvertisingLite
@@ -29439,7 +29435,6 @@ HOST-SUFFIX,gky73.cn,AdvertisingLite
 HOST-SUFFIX,gladiatorbugs.com,AdvertisingLite
 HOST-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk,AdvertisingLite
 HOST-SUFFIX,glasszz.com,AdvertisingLite
-HOST-SUFFIX,glbdns.microsoft.com,AdvertisingLite
 HOST-SUFFIX,gleergie.net,AdvertisingLite
 HOST-SUFFIX,glispa.com,AdvertisingLite
 HOST-SUFFIX,global-surveys.co,AdvertisingLite

@@ -19161,7 +19161,6 @@
 ||c.messinahembry.com^
 ||c.mfstatic.cz^
 ||c.mibank.com^
-||c.microsoft.com^
 ||c.mktg.genesys.com^
 ||c.mnjkw.cn^
 ||c.msn.com^
@@ -257840,7 +257839,6 @@
 ||crickwrite.com^
 ||crimentasaju.site^
 ||criminglynuk.pro^
-||crl.microsoft.com^
 ||crm-eve.b2b.alibaba-inc.com^
 ||crocoads.com^
 ||crocopop.com^
@@ -260834,7 +260832,6 @@
 ||glaumtok.com^
 ||glauptan.net^
 ||glawheejoushpush.com^
-||glbdns.microsoft.com^
 ||glbsuoebquueky.com^
 ||gld35wndkn.com^
 ||gleaminist.info^
@@ -293049,9 +293046,7 @@
 ||nexolen.net^
 ||next-done.website^
 ||nextyourcontent.com^
-||nexus.officeapps.live.com^
 ||nexusedgeio.com^
-||nexusrules.officeapps.live.com^
 ||nexx360-static.io^
 ||nexyzh.com^
 ||nfdomuxlrdypk.site^
@@ -295293,7 +295288,6 @@
 ||platesnervous.com^
 ||platform.adwep.com^
 ||platform.foursquare.com^
-||platform.linkedin.com^
 ||platform.loyaltylion.com^
 ||platform.tumblr.com^
 ||platformallowingcame.com^
@@ -295633,7 +295627,6 @@
 ||preppiesteamer.com^
 ||prepstarcenter.com^
 ||prerogativeproblems.com^
-||presence.teams.live.com^
 ||presentimentguestmetaphor.com^
 ||presentunique.pro^
 ||preservealso.com^

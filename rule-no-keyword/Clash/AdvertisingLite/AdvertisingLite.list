@@ -6,7 +6,7 @@
 # DOMAIN-SUFFIX: 13939
 # IP-CIDR: 186
 # IP-CIDR6: 1
-# TOTAL: 37879
+# TOTAL: 37874
 DOMAIN,00-gov.cn
 DOMAIN,0024aadd.com
 DOMAIN,0026645142c89aeb1.com
@@ -13938,8 +13938,6 @@ DOMAIN,nextlandingads.com
 DOMAIN,nextmillennium.io
 DOMAIN,nextoptim.com
 DOMAIN,nextstat.com
-DOMAIN,nexus.officeapps.live.com
-DOMAIN,nexusrules.officeapps.live.com
 DOMAIN,nezbumpwtdexd.com
 DOMAIN,nfbpdwso.com
 DOMAIN,nfdnserror1.wo.com.cn
@@ -15430,7 +15428,6 @@ DOMAIN,plantdigestion.com
 DOMAIN,platform.communicatorcorp.com
 DOMAIN,platform.foursquare.com
 DOMAIN,platform.iteratehq.com
-DOMAIN,platform.linkedin.com
 DOMAIN,platform.loyaltylion.com
 DOMAIN,platform.tumblr.com
 DOMAIN,platformpanda.com
@@ -27642,7 +27639,6 @@ DOMAIN-SUFFIX,crimentasaju.site
 DOMAIN-SUFFIX,criminglynuk.pro
 DOMAIN-SUFFIX,criteo.com
 DOMAIN-SUFFIX,criteo.net
-DOMAIN-SUFFIX,crl.microsoft.com
 DOMAIN-SUFFIX,crm-eve.b2b.alibaba-inc.com
 DOMAIN-SUFFIX,crocopop.com
 DOMAIN-SUFFIX,crosschannel.com
@@ -29439,7 +29435,6 @@ DOMAIN-SUFFIX,gky73.cn
 DOMAIN-SUFFIX,gladiatorbugs.com
 DOMAIN-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk
 DOMAIN-SUFFIX,glasszz.com
-DOMAIN-SUFFIX,glbdns.microsoft.com
 DOMAIN-SUFFIX,gleergie.net
 DOMAIN-SUFFIX,glispa.com
 DOMAIN-SUFFIX,global-surveys.co

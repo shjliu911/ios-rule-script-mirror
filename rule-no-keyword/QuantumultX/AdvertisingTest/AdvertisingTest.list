@@ -6,7 +6,7 @@
 # HOST-SUFFIX: 301899
 # IP-CIDR: 508
 # IP6-CIDR: 3
-# TOTAL: 315568
+# TOTAL: 315561
 HOST,103.179.189.35,AdvertisingTest
 HOST,103.224.182.210,AdvertisingTest
 HOST,107.148.45.21,AdvertisingTest
@@ -32250,7 +32250,6 @@ HOST-SUFFIX,c.medone.academy,AdvertisingTest
 HOST-SUFFIX,c.messinahembry.com,AdvertisingTest
 HOST-SUFFIX,c.mfstatic.cz,AdvertisingTest
 HOST-SUFFIX,c.mibank.com,AdvertisingTest
-HOST-SUFFIX,c.microsoft.com,AdvertisingTest
 HOST-SUFFIX,c.mktg.genesys.com,AdvertisingTest
 HOST-SUFFIX,c.mnjkw.cn,AdvertisingTest
 HOST-SUFFIX,c.msn.com,AdvertisingTest
@@ -266863,7 +266862,6 @@ HOST-SUFFIX,creatives1.ftimg.net,AdvertisingTest
 HOST-SUFFIX,creativetv.pro,AdvertisingTest
 HOST-SUFFIX,crimentasaju.site,AdvertisingTest
 HOST-SUFFIX,criminglynuk.pro,AdvertisingTest
-HOST-SUFFIX,crl.microsoft.com,AdvertisingTest
 HOST-SUFFIX,crm-eve.b2b.alibaba-inc.com,AdvertisingTest
 HOST-SUFFIX,crocopop.com,AdvertisingTest
 HOST-SUFFIX,crosschannel.com,AdvertisingTest
@@ -268354,7 +268352,6 @@ HOST-SUFFIX,gky73.cn,AdvertisingTest
 HOST-SUFFIX,gladiatorbugs.com,AdvertisingTest
 HOST-SUFFIX,glasgowtimes-gb.glasgowtimes.co.uk,AdvertisingTest
 HOST-SUFFIX,glasszz.com,AdvertisingTest
-HOST-SUFFIX,glbdns.microsoft.com,AdvertisingTest
 HOST-SUFFIX,gleergie.net,AdvertisingTest
 HOST-SUFFIX,glispa.com,AdvertisingTest
 HOST-SUFFIX,global-surveys.co,AdvertisingTest
@@ -293063,9 +293060,7 @@ HOST-SUFFIX,nexaapptwp.top,AdvertisingTest
 HOST-SUFFIX,nexolen.net,AdvertisingTest
 HOST-SUFFIX,next-done.website,AdvertisingTest
 HOST-SUFFIX,nextyourcontent.com,AdvertisingTest
-HOST-SUFFIX,nexus.officeapps.live.com,AdvertisingTest
 HOST-SUFFIX,nexusedgeio.com,AdvertisingTest
-HOST-SUFFIX,nexusrules.officeapps.live.com,AdvertisingTest
 HOST-SUFFIX,nexx360-static.io,AdvertisingTest
 HOST-SUFFIX,nexyzh.com,AdvertisingTest
 HOST-SUFFIX,nfdomuxlrdypk.site,AdvertisingTest
@@ -295306,7 +295301,6 @@ HOST-SUFFIX,platenssitient.com,AdvertisingTest
 HOST-SUFFIX,platesnervous.com,AdvertisingTest
 HOST-SUFFIX,platform.adwep.com,AdvertisingTest
 HOST-SUFFIX,platform.foursquare.com,AdvertisingTest
-HOST-SUFFIX,platform.linkedin.com,AdvertisingTest
 HOST-SUFFIX,platform.loyaltylion.com,AdvertisingTest
 HOST-SUFFIX,platform.tumblr.com,AdvertisingTest
 HOST-SUFFIX,platformallowingcame.com,AdvertisingTest
@@ -295646,7 +295640,6 @@ HOST-SUFFIX,prepositionrumour.com,AdvertisingTest
 HOST-SUFFIX,preppiesteamer.com,AdvertisingTest
 HOST-SUFFIX,prepstarcenter.com,AdvertisingTest
 HOST-SUFFIX,prerogativeproblems.com,AdvertisingTest
-HOST-SUFFIX,presence.teams.live.com,AdvertisingTest
 HOST-SUFFIX,presentimentguestmetaphor.com,AdvertisingTest
 HOST-SUFFIX,presentunique.pro,AdvertisingTest
 HOST-SUFFIX,preservealso.com,AdvertisingTest
